@@ -1,73 +1,107 @@
-## ⚠️ Nota importante antes de empezar
-**Para hacer todo esto necesitarán instalar Git para abrir la terminal Bash. Si usan otra consola, diganle a la ia que lo adapte a su terminal c:**
+# AutoFinance 🚗
+
+Aplicación web para la simulación de financiamiento vehicular, desarrollada como proyecto académico en la Universidad Peruana de Ciencias Aplicadas (UPC).
+
+AutoFinance permite visualizar vehículos, configurar condiciones de financiamiento y generar automáticamente un cronograma de pagos considerando variables como cuota inicial, TEA, seguros, plazo y otras condiciones asociadas al crédito.
 
 ---
-- Paso 1: Clonar el repositorio limpio
 
-git clone https://github.com/VictorZERO21/AutoFinance.git
+## Funcionalidades
 
-cd AutoFinance
+- Visualización de catálogo de vehículos.
+- Simulación de financiamiento vehicular.
+- Configuración de cuota inicial.
+- Configuración de TEA y plazo de financiamiento.
+- Cálculo de seguro de desgravamen y seguro vehicular.
+- Generación automática del cronograma de pagos.
+- Cálculo de interés, amortización, cuota y saldo.
+- Registro e inicio de sesión de usuarios.
+- Persistencia de información en base de datos.
+- Servicios REST con autenticación mediante JWT.
 
-<br>
+---
 
-- Paso 2: Crear su propio entorno virtual local
+## Tecnologías
+
+### Backend
+- Python
+- Django
+- Django REST Framework
+- JWT
+
+### Base de datos
+- PostgreSQL
+- SQLite para entorno local
+
+### Frontend
+- HTML
+- CSS
+- JavaScript
+- Django Templates
+
+### Infraestructura y despliegue
+- Docker
+- Gunicorn
+- WhiteNoise
+- Cloudinary
+- Google Cloud Run
+
+---
+
+## Capturas
+
+### Catálogo de vehículos
+
+![Catálogo de vehículos](docs/catalogo.png)
+
+### Simulador de financiamiento
+
+![Simulador de financiamiento](docs/simulador.png)
+
+### Cronograma de pagos
+
+![Cronograma de pagos](docs/cronograma.png)
+
+### Inicio de sesión
+
+![Inicio de sesión](docs/login.png)
+
+---
+
+## Mi contribución
+
+Proyecto desarrollado en equipo.
+
+Mis principales aportes fueron:
+
+- Desarrollo de la primera versión funcional de la aplicación web.
+- Implementación inicial del catálogo de vehículos y del flujo de simulación.
+- Desarrollo de la lógica base para la generación del plan de pagos mediante el sistema francés.
+- Implementación inicial de cálculos considerando cuota inicial, TEA, seguros y plazo de financiamiento.
+- Definición de la estructura inicial de la aplicación y de sus principales flujos de usuario.
+
+Posteriormente, el equipo continuó refinando la solución con mejoras en autenticación, catálogo y cálculo financiero.
+
+---
+
+## Arquitectura general
+
+La aplicación utiliza Django como framework principal para gestionar la lógica de negocio, vistas y persistencia de información.
+
+El sistema permite procesar los parámetros ingresados por el usuario y generar un cronograma de pagos a partir de las condiciones seleccionadas.
+
+PostgreSQL se utiliza como base de datos principal, mientras que SQLite puede utilizarse para ejecución local y pruebas.
+
+---
+
+## Ejecución local
+
+```bash
+git clone https://github.com/VictorZERO21/AutoFinance-Portfolio.git
+cd AutoFinance-Portfolio
 
 python -m venv venv
-
-<br>
-
-- Paso 3: Activar el entorno virtual (En Bash)
-
-source venv/Scripts/activate
-
-<br>
-
-- Paso 4: Instalar Django y las librerías necesarias
-
-pip install django numpy-financial "psycopg[binary]"
-
-<br>
-
-- Paso 5: Cambiar la base de datos
-
-En la carpeta autofinance_web en el archivo settings.py bajen hasta la parte de DATABASES y pongan su información
-
-Y guardarlo con Control + S
-
-<br>
-
-- Paso 6: Crear las tablas y arrancar
-  
-python manage.py migrate
-
-python manage.py runserver
-
----
-
-## Probar en PostgreSQL (local)
-
-Si quieren probar el proyecto en PostgreSQL sin tocar su SQLite, usen este flujo:
-
-- Paso 1: Levantar PostgreSQL con Docker
-
-docker compose -f docker-compose.postgres.yml up -d
-
-- Paso 2: Crear su archivo .env local
-
-Copien `.env.example` a `.env` y asegúrense de tener esta variable:
-
-DATABASE_URL=postgresql://autofinance:autofinance@localhost:5432/autofinance
-
-`settings.py` ya prioriza `DATABASE_URL`, así que al estar presente usará PostgreSQL automáticamente.
-
-- Paso 3: Ejecutar migraciones en PostgreSQL
+pip install -r requirements.txt
 
 python manage.py migrate
-
-- Paso 4: Arrancar el servidor
-
 python manage.py runserver
-
-- Paso 5: (Opcional) volver a SQLite
-
-Quiten o comenten `DATABASE_URL` en `.env` y el proyecto volverá a usar `db.sqlite3`.
