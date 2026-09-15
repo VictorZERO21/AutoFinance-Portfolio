@@ -54,10 +54,12 @@ AutoFinance permite visualizar vehículos, configurar condiciones de financiamie
 
 ![Catálogo de vehículos](docs/catalogo.png)
 
+![Catálogo de vehículos2](docs/catalogo1.png)
 ### Simulador de financiamiento
 
 ![Simulador de financiamiento](docs/simulador.png)
 
+![Simulador de financiamiento2](docs/simulador1.png)
 ### Cronograma de pagos
 
 ![Cronograma de pagos](docs/cronograma.png)
